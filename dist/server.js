@@ -28,7 +28,7 @@ async function fetchDiscordNames(userId) {
         return null;
     }
 }
-app.get("https://prince-kun-website-backend.onrender.com/api/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
     let connection;
     try {
         connection = await pool.getConnection();
