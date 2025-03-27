@@ -1,15 +1,14 @@
 import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
-import pool from "./db.js"; // Import database connection
-import fetch from "node-fetch"; // Required for fetching from Discord API
-dotenv.config(); // Load .env variables
+import pool from "./db.js";
+import fetch from "node-fetch";
+dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const DISCORD_BOT_TOKEN = process.env.DISCORD_BOT_TOKEN;
 app.use(express.json());
 app.use(cors());
-// Function to fetch Discord usernames
 async function fetchDiscordNames(userId) {
     try {
         const response = await fetch(`https://discord.com/api/v10/users/${userId}`, {
@@ -29,8 +28,7 @@ async function fetchDiscordNames(userId) {
         return null;
     }
 }
-// API route to fetch users with Discord names
-app.get("/api/users", async (req, res) => {
+app.get("https://prince-kun-website-backend.onrender.com/api/users", async (req, res) => {
     let connection;
     try {
         connection = await pool.getConnection();
@@ -51,7 +49,6 @@ app.get("/api/users", async (req, res) => {
             connection.release();
     }
 });
-// Start the Express server
 app.listen(PORT, () => {
     console.log(`Backend running on http://localhost:${PORT}`);
 });
